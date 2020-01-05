@@ -1,0 +1,7 @@
+.input {
+  @apply .my-1 .py-2 .px-3 .shadow .rounded;
+}
+
+.input-rounded {
+  @apply .rounded
+}

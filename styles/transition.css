@@ -1,0 +1,8 @@
+.select-transition-appear {
+  opacity: 0.01;
+}
+
+.select-transition-appear.select-transition-appear-active {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+}
