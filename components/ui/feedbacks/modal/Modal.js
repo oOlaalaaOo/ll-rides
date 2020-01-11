@@ -1,7 +1,7 @@
-import classnames from 'classnames'
+import cx from 'classnames'
 
 const Modal = ({ title = '', content = '', actions = '', size = 'md', onClose = () => {} }) => {
-  const responsiveClass = classnames({
+  const responsiveClass = cx({
     'w-1/3': size === 'xs',
     'xs:w-9/10': size === 'xs',
     'sm:w-9/10': size === 'xs',

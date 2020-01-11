@@ -1,0 +1,15 @@
+.notification-container {
+  @apply fixed;
+  top: 20px;
+  right: 20px;
+  max-width: 600px;
+  z-index: 99999;
+}
+
+.notification {
+  @apply border cursor-pointer w-auto mb-3 shadow rounded;
+}
+
+.notification-content {
+  @apply py-5 px-5;
+}

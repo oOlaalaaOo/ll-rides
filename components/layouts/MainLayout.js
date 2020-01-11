@@ -1,8 +1,12 @@
 import React from 'react'
-import Button from '../ui/inputs/Button'
+import { Button } from '../ui/inputs'
+import { Notification } from '../ui/feedbacks'
 import Head from 'next/head'
+import { useSelector, shallowEqual } from 'react-redux'
 
 const MainLayout = ({ children, withHeader = true, title = 'LL Rides' }) => {
+  const { notifications } = useSelector(state => state.notificationReducer, shallowEqual)
+
   return (
     <React.Fragment>
       <Head>
@@ -30,7 +34,23 @@ const MainLayout = ({ children, withHeader = true, title = 'LL Rides' }) => {
             <React.Fragment />
           )
         }
+
         {children}
+
+      </div>
+
+      <div className="notification-container">
+        {
+          notifications && Array.isArray(notifications) && notifications.map((notification, i) => (
+            <React.Fragment key={i}>
+              <Notification
+                type={notification.type}
+                message={notification.message}
+                duration={notification.duration}
+              />
+            </React.Fragment>
+          ))
+        }
       </div>
     </React.Fragment>
   )

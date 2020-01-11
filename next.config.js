@@ -12,11 +12,13 @@ const withConfig = nextRuntimeDotenv({
   server: []
 })
 
+const offlineConfig = {}
+
 const nextConfig = {}
 
 module.exports = withConfig(
   withPlugins([
     [withCSS],
-    [withOffline]
+    [withOffline, offlineConfig]
   ], nextConfig)
 )

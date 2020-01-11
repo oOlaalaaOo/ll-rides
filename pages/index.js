@@ -5,8 +5,11 @@ import { Button, Input } from '../components/ui/inputs'
 import authApi from '../api/authApi'
 import { validValue, validEmail, validMinLength } from '../utils/validationUtil'
 import { Modal, ModalTitle, ModalContent, ModalActions } from '../components/ui/feedbacks/modal'
+import { useDispatch } from 'react-redux'
+import { pushNotification } from '../store/actions/notificationAction'
 
 const Index = () => {
+  const dispatch = useDispatch()
   const [showModal, setShowModal] = useState(false)
 
   const login = async ({ email, password }) => {
@@ -98,7 +101,12 @@ const Index = () => {
                       className="btn-default shadow-none bg-white pull-right"
                       onClick={e => {
                         e.preventDefault()
-                        setShowModal(true)
+                        dispatch(pushNotification({
+                          type: 'danger',
+                          message: 'Test Notification Message.',
+                          duration: 5000
+                        }))
+                        // setShowModal(true)
                       }}
                     >
                       Forgot Password?
