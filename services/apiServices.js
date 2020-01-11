@@ -1,14 +1,8 @@
 const axios = require('axios')
 import { getCookie } from '../utils/cookieUtil'
-import getConfig from 'next/config'
-
-const {
-  publicRuntimeConfig: {DEV_API_URL, PROD_API_URL},
-  serverRuntimeConfig: {}
-} = getConfig()
 
 const isProd = process.env.NODE_ENV === 'production'
-axios.defaults.baseURL = isProd ? PROD_API_URL : DEV_API_URL
+axios.defaults.baseURL = isProd ? process.env.prodApiUrl : process.env.devApiUrl
 
 const postReq = async (url, payload, cancelToken = null, hasImage = false, auth = true) => {
   try {

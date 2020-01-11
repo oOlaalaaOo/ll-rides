@@ -1,16 +1,8 @@
 const withCSS = require('@zeit/next-css')
 const withOffline = require('next-offline')
 const withPlugins = require('next-compose-plugins')
-const nextRuntimeDotenv = require('next-runtime-dotenv')
 
-const withConfig = nextRuntimeDotenv({
-  path: '.env',
-  public: [
-    'DEV_API_URL',
-    'PROD_API_URL'
-  ],
-  server: []
-})
+const isProd = process.env.NODE_ENV === 'production'
 
 const offlineConfig = {
   target: 'serverless',
@@ -40,11 +32,20 @@ const offlineConfig = {
   },
 }
 
-const nextConfig = {}
+const nextConfig = {
+  env: {
+    devApiUrl: 'http://localhost:8000/api/',
+    prodApiUrl: 'http://localhost:8000/api/',
+  }
+}
 
-module.exports = withConfig(
-  withPlugins([
+if (isProd) {
+  module.exports = withPlugins([
     [withCSS],
     [withOffline, offlineConfig]
   ], nextConfig)
-)
+} else {
+  module.exports = withPlugins([
+    [withCSS]
+  ], nextConfig)
+}

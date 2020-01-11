@@ -8,7 +8,6 @@ export const setCookie = (key, value = '') => {
   cookie.set(key, value, {
     expires: 1,
     path: '/',
-    domain: 'http://localhost:3000/'
   })
 }
 
@@ -27,6 +26,5 @@ export const removeCookie = (key) => {
 
   cookie.remove(key, {
     path: '/',
-    domain: 'http://localhost:3000/'
   })
 }
