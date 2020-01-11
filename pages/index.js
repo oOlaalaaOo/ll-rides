@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import MainLayout from '../components/layouts/MainLayout'
 import { Form, Field } from 'react-final-form'
-import Button from '../components/ui/inputs/Button'
-import Input from '../components/ui/inputs/Input'
+import { Button, Input } from '../components/ui/inputs'
 import authApi from '../api/authApi'
 import { validValue, validEmail, validMinLength } from '../utils/validationUtil'
+import { Modal, ModalTitle, ModalContent, ModalActions } from '../components/ui/feedbacks/modal'
 
 const Index = () => {
+  const [showModal, setShowModal] = useState(false)
+
   const login = async ({ email, password }) => {
     return authApi.login(email, password)
   }
@@ -43,7 +45,7 @@ const Index = () => {
   return (
     <MainLayout withHeader={false}>
       <div className="flex justify-center items-center min-h-screen">
-        <div className="w-full max-w-sm px-8 py-5 rounded shadow-lg">
+        <div className="w-full max-w-sm px-8 py-5 rounded shadow-lg animated fadeIn faster">
           <Form
             onSubmit={onSubmit}
             render={({ handleSubmit }) => (
@@ -82,18 +84,22 @@ const Index = () => {
                     )}
                   />
 
-                  <div className="w-full mt-3" />
-                  
+                  <div className="w-full my-2" />
+
                   <div className="flex items-center justify-between">
-                    <Button
-                      type="submit"
-                      className="btn-primary"
-                    >
-                      LOGIN
-                    </Button>
+                      <Button
+                        type="submit"
+                        className="btn-primary"
+                      >
+                        LOGIN
+                      </Button>
 
                     <Button
                       className="btn-default shadow-none bg-white pull-right"
+                      onClick={e => {
+                        e.preventDefault()
+                        setShowModal(true)
+                      }}
                     >
                       Forgot Password?
                     </Button>
@@ -103,6 +109,32 @@ const Index = () => {
           />
         </div>
       </div>
+
+      <React.Fragment>
+        {
+          showModal ?
+            <Modal
+              title={
+                <ModalTitle>
+                  <p>Modal Title</p>
+                </ModalTitle>
+              }
+              content={
+                <ModalContent>
+                  <p>Modal Content</p>
+                </ModalContent>
+              }
+              actions={
+                <ModalActions>
+                  <Button onClick={() => setShowModal(false)}>Close</Button>
+                </ModalActions>
+              }
+              status={showModal}
+              onClose={() => setShowModal(false)}
+            /> :
+            <React.Fragment />
+        }
+      </React.Fragment>
     </MainLayout>
   )
 }

@@ -1,6 +1,7 @@
 @import './button.css';
 @import './input.css';
 @import './transition.css';
+@import './modal.css';
 
 /* purgecss start ignore */
 @tailwind base;

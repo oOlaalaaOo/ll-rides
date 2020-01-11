@@ -1,0 +1,4 @@
+.modal-active {
+  overflow-x: hidden;
+  overflow-y: visible !important;
+}

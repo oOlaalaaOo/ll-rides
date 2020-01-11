@@ -2,11 +2,11 @@ import React from 'react'
 import Button from '../ui/inputs/Button'
 import Head from 'next/head'
 
-const MainLayout = ({ children, withHeader = true }) => {
+const MainLayout = ({ children, withHeader = true, title = 'LL Rides' }) => {
   return (
     <React.Fragment>
       <Head>
-        <title>LL Rides</title>
+        <title>{title}</title>
       </Head>
       <div className="container mx-auto">
         {
