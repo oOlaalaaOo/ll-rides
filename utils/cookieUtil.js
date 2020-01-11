@@ -1,6 +1,6 @@
 import cookie from 'js-cookie'
 
-const setCookie = (key, value = '') => {
+export const setCookie = (key, value = '') => {
   if (typeof key === 'undefined' || key == null) {
     throw 'no key'
   }
@@ -12,7 +12,7 @@ const setCookie = (key, value = '') => {
   })
 }
 
-const getCookie = (key) => {
+export const getCookie = (key) => {
   if (typeof key === 'undefined' || key == null) {
     throw 'no key'
   }
@@ -20,7 +20,7 @@ const getCookie = (key) => {
   cookie.get(key)
 }
 
-const removeCookie = (key) => {
+export const removeCookie = (key) => {
   if (typeof key === 'undefined' || key == null) {
     throw 'no key'
   }
@@ -29,10 +29,4 @@ const removeCookie = (key) => {
     path: '/',
     domain: 'http://localhost:3000/'
   })
-}
-
-export default {
-  setCookie,
-  getCookie,
-  removeCookie
 }

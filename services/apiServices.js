@@ -1,5 +1,5 @@
 const axios = require('axios')
-import cookieUtil from '../utils/cookieUtil'
+import { getCookie } from '../utils/cookieUtil'
 import getConfig from 'next/config'
 
 const {
@@ -16,7 +16,7 @@ const postReq = async (url, payload, cancelToken = null, hasImage = false, auth 
 
     if (auth) {
       Object.assign(headerConfig, {
-        'Authorization': `Bearer ${cookieUtil.getCookie('accessToken')}`
+        'Authorization': `Bearer ${getCookie('accessToken')}`
       })
     }
 
@@ -50,7 +50,7 @@ const getReq = async (url, payload = {}, cancelToken = null, auth = true) => {
 
     if (auth) {
       Object.assign(headerConfig, {
-        'Authorization': `Bearer ${cookieUtil.getCookie('accessToken')}`
+        'Authorization': `Bearer ${getCookie('accessToken')}`
       })
     }
 

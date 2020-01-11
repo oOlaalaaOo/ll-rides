@@ -1,4 +1,3 @@
-const path = require('path')
 const withCSS = require('@zeit/next-css')
 const withOffline = require('next-offline')
 const withPlugins = require('next-compose-plugins')
@@ -13,11 +12,13 @@ const withConfig = nextRuntimeDotenv({
   server: []
 })
 
+const offlineConfig = {}
+
 const nextConfig = {}
 
 module.exports = withConfig(
   withPlugins([
     [withCSS],
-    [withOffline]
+    [withOffline, offlineConfig]
   ], nextConfig)
 )

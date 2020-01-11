@@ -1,8 +1,14 @@
-.select-transition-appear {
-  opacity: 0.01;
+.my-node-enter {
+  opacity: 0;
 }
-
-.select-transition-appear.select-transition-appear-active {
+.my-node-enter-active {
   opacity: 1;
-  transition: opacity .5s ease-in;
+  transition: opacity 200ms;
+}
+.my-node-exit {
+  opacity: 1;
+}
+.my-node-exit-active {
+  opacity: 0;
+  transition: opacity 200ms;
 }
