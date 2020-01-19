@@ -1,4 +1,3 @@
-/* global importScripts, firebase */
 importScripts('https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js')
 importScripts('https://www.gstatic.com/firebasejs/7.6.1/firebase-messaging.js')
 
@@ -13,20 +12,4 @@ firebase.initializeApp({
   measurementId: "G-7CM9H350Q2"
 })
 
-const messaging = firebase.messaging()
-
-messaging.setBackgroundMessageHandler(payload => {
-  console.log('[firebase-messaging-sw.js] Received background message ', payload)
-  // Customize notification here
-  const notificationTitle = 'Background Message Title'
-  const notificationOptions = {
-    body: 'Here is a notification body!',
-    vibrate: [100, 50, 100],
-    data: {
-      dateOfArrival: Date.now(),
-      primaryKey: 1
-    }
-  }
-
-  return self.registration.showNotification(notificationTitle, notificationOptions)
-})
+firebase.messaging()
