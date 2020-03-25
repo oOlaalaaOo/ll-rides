@@ -10,7 +10,7 @@ const isProd = process.env.NODE_ENV === 'production'
 const nextConfig = {
   env: {
     devApiUrl: 'http://localhost:8000/api/',
-    prodApiUrl: 'http://localhost:8000/api/'
+    prodApiUrl: 'https://ll-rides.com/api/'
   }
 }
 
@@ -18,7 +18,6 @@ const nextConfig = {
 const themeVariables = lessToJS(
   fs.readFileSync(path.resolve(__dirname, './assets/antd-custom.less'), 'utf8')
 )
-
 
 const antdLessConfig = {
   lessLoaderOptions: {

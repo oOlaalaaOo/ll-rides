@@ -1,24 +1,49 @@
 import MainLayout from '../components/layouts/MainLayout'
 import { NextPage } from 'next'
-import { Row, Col } from 'antd'
+import { Row, Col, Button } from 'antd'
 import Image from '../components/ui/Image'
-import LineBreak from '../components/ui/LineBreak'
+import Router from 'next/router'
 
 const Index: NextPage<any> = () => {
   return (
-    <MainLayout>
-      <div style={{ minHeight: '93vh' }}>
-        <Row>
-          <Col span={6}>
+    <MainLayout bgColor='bg-secondary'>
+      <Row
+        type="flex"
+        justify="center"
+        align="middle"
+        style={{
+          minHeight: '100vh'
+        }}
+      >
+        <Col xs={14} sm={10} md={8} lg={6} xl={6}>
+          <>
             <Image
               src="/images/logo.png"
               alt="ll-rides"
               width="100%"
             />
-            <LineBreak top="5px" bottom="5px" />
-          </Col>
-        </Row>
-      </div>
+            <div style={{ textAlign: 'center', marginTop: '20px' }}>
+              <Button
+                type="primary"
+                htmlType="button"
+                block
+                onClick={() => Router.push('/login')}
+              >
+                LOGIN
+              </Button>
+              <div style={{ marginTop: '10px', marginBottom: '10px' }} />
+              <Button
+                type="default"
+                htmlType="button"
+                block
+                onClick={() => Router.push('/register')}
+              >
+                REGISTER
+              </Button>
+            </div>
+          </>
+        </Col>
+      </Row>
     </MainLayout>
   )
 }

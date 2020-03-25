@@ -1,27 +1,24 @@
 import * as React from 'react'
 import Head from 'next/head'
-import { Layout } from 'antd'
-const { Footer, Content } = Layout
+// import { Layout } from 'antd'
+// const { Footer, Content } = Layout
 
 type Props = {
   children: any;
   title?: string;
+  bgColor?: string;
 }
 
-const MainLayout: React.FC<Props> = ({ children, title = 'LL Rides' }) => {
-
+const MainLayout: React.FC<Props> = ({ children, title = 'LL Rides', bgColor = 'bg-primary' }) => {
   return (
-    <React.Fragment>
-      <Layout>
-        <Head>
-          <title>{title}</title>
-        </Head>
-        <Content>
-          {children}
-        </Content>
-        <Footer></Footer>
-      </Layout>
-    </React.Fragment>
+    <>
+      <Head>
+        <title>{title}</title>
+      </Head>
+      <div className={bgColor}>
+        {children}
+      </div>
+    </>
   )
 }
 

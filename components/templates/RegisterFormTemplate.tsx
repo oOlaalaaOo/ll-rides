@@ -10,11 +10,11 @@ type Props = {
 }
 
 const RegisterFormTemplate: React.FC<Props> = ({ form }) => {
-  const { getFieldDecorator } = form
+  const { getFieldDecorator, validateFields, getFieldValue } = form
 
   const handleSubmit = (e: any) => {
     e.preventDefault()
-    form.validateFields((err: any, values: any) => {
+    validateFields((err: any, values: any) => {
       if (!err) {
         console.log(values)
         register(values.email, values.password, values.name)
@@ -26,17 +26,13 @@ const RegisterFormTemplate: React.FC<Props> = ({ form }) => {
     return await authApi.register(email, password, name)
   }
 
-  const compareToFirstPassword = (value: any, callback: any) => {
-    if (value && value !== form.getFieldValue('password')) {
-      callback('Two passwords that you enter is inconsistent!')
+  const compareToFirstPassword = (rule: any, value: any, callback: any) => {
+    console.log(rule)
+    if (value && value !== getFieldValue('password')) {
+      callback('Confirm password did not matched')
     } else {
       callback()
     }
-  }
-
-  const formItemLayout = {
-    labelCol: { span: 8 },
-    wrapperCol: { span: 16 }
   }
 
   return (
@@ -47,11 +43,8 @@ const RegisterFormTemplate: React.FC<Props> = ({ form }) => {
           alt="ll-rides"
           width="40%"
         />
-        <Form onSubmit={handleSubmit} layout="horizontal">
-          <Form.Item
-            label="Full Name"
-            {...formItemLayout}
-          >
+        <Form onSubmit={handleSubmit}>
+          <Form.Item>
             {getFieldDecorator('name', {
               rules: [
                 {
@@ -66,10 +59,7 @@ const RegisterFormTemplate: React.FC<Props> = ({ form }) => {
               />
             )}
           </Form.Item>
-          <Form.Item
-            label="Email Address"
-            {...formItemLayout}
-          >
+          <Form.Item>
             {getFieldDecorator('email', {
               rules: [
                 {
@@ -80,25 +70,22 @@ const RegisterFormTemplate: React.FC<Props> = ({ form }) => {
                   type: 'email',
                   message: 'Please input valid email address'
                 }
-              ],
+              ]
             })(
               <Input
-                prefix={<Icon type="user" />}
+                prefix={<Icon type="mail" />}
                 placeholder="Email Address"
               />
             )}
           </Form.Item>
-          <Form.Item
-            label="Password"
-            {...formItemLayout}
-          >
+          <Form.Item>
             {getFieldDecorator('password', {
               rules: [
                 {
                   required: true,
                   message: 'Please input your password'
                 }
-              ],
+              ]
             })(
               <Input
                 prefix={<Icon type="lock" />}
@@ -107,10 +94,7 @@ const RegisterFormTemplate: React.FC<Props> = ({ form }) => {
               />
             )}
           </Form.Item>
-          <Form.Item
-            label="Confirm Password"
-            {...formItemLayout}
-          >
+          <Form.Item>
             {getFieldDecorator('confirm_password', {
               rules: [
                 {

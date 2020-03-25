@@ -6,20 +6,18 @@ import { Row, Col } from 'antd'
 const Login: NextPage<any> = () => {
   return (
     <MainLayout>
-      <div>
-        <Row
-          type="flex"
-          justify="center"
-          align="middle"
-          style={{
-            minHeight: '93vh'
-          }}
-        >
-          <Col xs={18} sm={14} md={10} lg={8} xl={6}>
-            <LoginFormTemplate />
-          </Col>
-        </Row>
-      </div>
+      <Row
+        type="flex"
+        justify="center"
+        align="middle"
+        style={{
+          minHeight: '100vh'
+        }}
+      >
+        <Col xs={18} sm={14} md={10} lg={8} xl={6}>
+          <LoginFormTemplate />
+        </Col>
+      </Row>
     </MainLayout>
   )
 }

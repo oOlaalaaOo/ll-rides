@@ -26,7 +26,7 @@ const LoginFormTemplate: React.FC<Props> = ({ form }) => {
   }
 
   return (
-    <React.Fragment>
+    <>
       <Card>
         <Image
           src="/images/logo.png"
@@ -39,11 +39,11 @@ const LoginFormTemplate: React.FC<Props> = ({ form }) => {
               rules: [
                 {
                   required: true,
-                  message: 'Please input your Email Address'
+                  message: 'Please input your email address'
                 },
                 {
                   type: 'email',
-                  message: 'Please input valid Email Address'
+                  message: 'Please input valid email address'
                 }
               ],
             })(
@@ -58,7 +58,7 @@ const LoginFormTemplate: React.FC<Props> = ({ form }) => {
               rules: [
                 { 
                   required: true,
-                  message: 'Please input your Password' 
+                  message: 'Please input your password' 
                 }
               ],
             })(
@@ -105,7 +105,7 @@ const LoginFormTemplate: React.FC<Props> = ({ form }) => {
           </Form.Item>
         </Form>
       </Card>
-    </React.Fragment>
+    </>
   )
 }
 

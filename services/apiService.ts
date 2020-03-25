@@ -4,7 +4,7 @@ import localStorageUtil from '../utils/localStorageUtil'
 const isProd = process.env.NODE_ENV === 'production'
 axios.defaults.baseURL = isProd ? process.env.prodApiUrl : process.env.devApiUrl
 
-const postReq = async (url: string, payload: object = {}, cancelToken:any = null, hasImage: boolean = false, auth: boolean = true) => {
+const postReq = async (url: string, payload: object = {}, cancelToken: any = null, hasImage: boolean = false, auth: boolean = true) => {
   try {
     let headerConfig = {}
 
@@ -23,7 +23,7 @@ const postReq = async (url: string, payload: object = {}, cancelToken:any = null
 
     const resp = await axios({
       method: 'post',
-      url: `api/${url}`,
+      url: url,
       data: payload,
       headers: headerConfig,
       cancelToken: cancelToken
@@ -52,7 +52,65 @@ const getReq = async (url: string, payload: object = {}, cancelToken: any = null
 
     const resp = await axios({
       method: 'get',
-      url: `api/${url}`,
+      url: url,
+      params: payload,
+      headers: headerConfig,
+      cancelToken: cancelToken
+    })
+
+    return resp.data
+  } catch (err) {
+    if (axios.isCancel(err)) {
+      console.error('Request is cancelled.')
+    }
+
+    return Promise.reject(err)
+  }
+}
+
+const putReq = async (url: string, payload: object = {}, cancelToken: any = null, auth: boolean = true) => {
+  try {
+    let headerConfig = {}
+
+    if (auth) {
+      const accessToken = await localStorageUtil.getItem('accessToken')
+      Object.assign(headerConfig, {
+        'Authorization': `Bearer ${accessToken}`
+      })
+    }
+
+    const resp = await axios({
+      method: 'put',
+      url: url,
+      params: payload,
+      headers: headerConfig,
+      cancelToken: cancelToken
+    })
+
+    return resp.data
+  } catch (err) {
+    if (axios.isCancel(err)) {
+      console.error('Request is cancelled.')
+    }
+
+    return Promise.reject(err)
+  }
+}
+
+const deleteReq = async (url: string, payload: object = {}, cancelToken: any = null, auth: boolean = true) => {
+  try {
+    let headerConfig = {}
+
+    if (auth) {
+      const accessToken = await localStorageUtil.getItem('accessToken')
+      Object.assign(headerConfig, {
+        'Authorization': `Bearer ${accessToken}`
+      })
+    }
+
+    const resp = await axios({
+      method: 'delete',
+      url: url,
       params: payload,
       headers: headerConfig,
       cancelToken: cancelToken
@@ -70,7 +128,7 @@ const getReq = async (url: string, payload: object = {}, cancelToken: any = null
 
 const loginReq = async (url: string, payload: object) => {
   try {
-    const resp = await axios.post(`api/${url}`, payload)
+    const resp = await axios.post(`${url}`, payload)
 
     return resp.data
   } catch (err) {
@@ -82,5 +140,7 @@ const loginReq = async (url: string, payload: object) => {
 export default {
   postReq,
   getReq,
+  putReq,
+  deleteReq,
   loginReq
 }
