@@ -145,7 +145,7 @@ const RegisterFormTemplate: FC<any> = () => {
                 type='link'
                 onClick={e => {
                   e.preventDefault();
-                  Router.push('/login');
+                  Router.push('/auth/login');
                 }}
                 disabled={registerProcessing}>
                 Go to Login

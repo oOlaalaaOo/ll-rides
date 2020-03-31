@@ -45,6 +45,7 @@ const antdLessConfig = {
         use: 'null-loader'
       });
     }
+
     return config;
   }
 };

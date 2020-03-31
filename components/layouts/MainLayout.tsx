@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { FC } from 'react';
 import Head from 'next/head';
 // import { Layout } from 'antd'
 // const { Footer, Content } = Layout
@@ -9,7 +9,7 @@ type Props = {
   bgColor?: string;
 };
 
-const MainLayout: React.FC<Props> = ({
+const MainLayout: FC<Props> = ({
   children,
   title = 'LL Rides',
   bgColor = 'bg-primary'

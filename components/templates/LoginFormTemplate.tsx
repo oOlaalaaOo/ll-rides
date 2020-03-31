@@ -126,7 +126,7 @@ const LoginFormTemplate: React.FC<any> = () => {
                 htmlType='button'
                 onClick={e => {
                   e.preventDefault();
-                  Router.push('/register');
+                  Router.push('/auth/register');
                 }}
                 disabled={loginProcessing}>
                 Register Now!

@@ -1,37 +1,50 @@
 import MainLayout from '../components/layouts/MainLayout';
 import { NextPage } from 'next';
-import { Row, Col, Button } from 'antd';
+import { Row, Col, Button, Typography } from 'antd';
 import Image from '../components/ui/Image';
 import Router from 'next/router';
+// import { LineBreak } from '../components/ui';
+
+const { Title, Paragraph } = Typography;
 
 const Index: NextPage<any> = () => {
   return (
     <MainLayout bgColor='bg-secondary'>
-      <Row
-        justify='center'
-        align='middle'
-        style={{
-          minHeight: '100vh'
-        }}>
-        <Col xs={14} sm={10} md={8} lg={6} xl={6}>
+      <div className='landing-menu'>
+        <ul className='landing-menu-list'>
+          <li>
+            <Button
+              type='primary'
+              shape='round'
+              onClick={() => Router.push('/auth/login')}
+            >
+              LOGIN
+            </Button>
+          </li>
+          <li>
+            <Button
+              type='primary'
+              shape='round'
+              onClick={() => Router.push('/auth/register')}
+            >
+              REGISTER
+            </Button>
+          </li>
+        </ul>
+      </div>
+      <Row justify='center' align='middle' style={{ minHeight: '90vh' }}>
+        <Col>
           <>
-            <Image src='/images/logo.png' alt='ll-rides' width='100%' />
-            <div style={{ textAlign: 'center', marginTop: '20px' }}>
-              <Button
-                type='primary'
-                htmlType='button'
-                block
-                onClick={() => Router.push('/auth/login')}>
-                LOGIN
-              </Button>
-              <div style={{ marginTop: '10px', marginBottom: '10px' }} />
-              <Button
-                type='default'
-                htmlType='button'
-                block
-                onClick={() => Router.push('/auth/register')}>
-                REGISTER
-              </Button>
+            <div style={{ textAlign: 'center' }}>
+              <Image src='/images/logo.png' alt='ll-rides' width='50%' />
+              <Title level={1} style={{ fontSize: '28pt' }}>
+                Been in a beautiful place?
+              </Title>
+              <Paragraph>
+                Please share it to us, for sure we would love to see what you
+                have experienced there.
+              </Paragraph>
+              <Title level={4}>Brought to you by LL RIDES</Title>
             </div>
           </>
         </Col>

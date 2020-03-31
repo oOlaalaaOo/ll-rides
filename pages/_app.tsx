@@ -16,12 +16,6 @@ Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
 class MyApp extends App<any> {
-  // static async getInitialProps(appContext: any) {
-  //   const appProps = await App.getInitialProps(appContext);
-
-  //   return { ...appProps };
-  // }
-
   componentDidMount() {
     if (isProd) {
       firebaseCloudMessaging.init();
