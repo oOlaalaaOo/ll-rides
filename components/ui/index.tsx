@@ -1,5 +1,2 @@
-import Image from './Image'
-
-module.exports = {
-  Image
-}
+export { default as Image } from './Image'
+export { default as LineBreak } from './LineBreak'

@@ -1,30 +1,36 @@
-import cookie from 'js-cookie'
+import Cookies from 'js-cookie';
 
-export const setCookie = (key: string, value: string = '') => {
+const setCookie = (key: string, value: string = '') => {
   if (typeof key === 'undefined' || key == null) {
-    throw 'no key'
+    throw 'no key';
   }
 
-  cookie.set(key, value, {
+  Cookies.set(key, value, {
     expires: 1,
-    path: '/',
-  })
-}
+    path: '/'
+  });
+};
 
-export const getCookie = (key: string) => {
+const getCookie = (key: string) => {
   if (typeof key === 'undefined' || key == null) {
-    throw 'no key'
+    throw 'no key';
   }
 
-  cookie.get(key)
-}
+  return Cookies.get(key);
+};
 
-export const removeCookie = (key: string) => {
+const removeCookie = (key: string) => {
   if (typeof key === 'undefined' || key == null) {
-    throw 'no key'
+    throw 'no key';
   }
 
-  cookie.remove(key, {
-    path: '/',
-  })
-}
+  Cookies.remove(key, {
+    path: '/'
+  });
+};
+
+export default {
+  setCookie,
+  getCookie,
+  removeCookie
+};

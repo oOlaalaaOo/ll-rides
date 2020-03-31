@@ -1,5 +1,5 @@
-import MainLayout from '../components/layouts/MainLayout'
-import LoginFormTemplate from '../components/templates/LoginFormTemplate'
+import MainLayout from '../../components/layouts/MainLayout'
+import LoginFormTemplate from '../../components/templates/LoginFormTemplate'
 import { NextPage } from 'next'
 import { Row, Col } from 'antd'
 
@@ -7,7 +7,6 @@ const Login: NextPage<any> = () => {
   return (
     <MainLayout>
       <Row
-        type="flex"
         justify="center"
         align="middle"
         style={{
@@ -22,4 +21,4 @@ const Login: NextPage<any> = () => {
   )
 }
 
-export default Login
+export default Login;
