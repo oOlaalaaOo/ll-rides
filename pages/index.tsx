@@ -1,12 +1,11 @@
 import MainLayout from '../components/layouts/MainLayout';
 import { NextPage } from 'next';
 import Router from 'next/router';
-import Snackbar, { Notify } from '../components/ui/Snackbar';
+import { Notify } from '../components/ui/Snackbar';
 
 const Index: NextPage<any> = () => {
   return (
     <>
-      <Snackbar />
       <MainLayout bgColor='bg-secondary'>
         <div className='p-4'>
           <ul className='flex float-right'>

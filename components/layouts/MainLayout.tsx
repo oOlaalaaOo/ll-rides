@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import Head from 'next/head';
+import { Snackbar } from '../ui';
 
 type Props = {
   children: any;
@@ -17,6 +18,7 @@ const MainLayout: FC<Props> = ({
       <Head>
         <title>{title}</title>
       </Head>
+      <Snackbar />
       <div className={`${bgColor}`}>{children}</div>
     </>
   );
