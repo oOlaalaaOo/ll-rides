@@ -1,0 +1,23 @@
+.snackbar {
+  right: 10px;
+  top: 10px;
+  @apply fixed z-10 w-1/4;
+}
+
+.snackbar > .snackbar-content {
+  @apply bg-white text-black py-3 px-3 my-2 w-full border shadow;
+}
+
+.snackbar-content > .title {
+  @apply text-lg text-left;
+}
+
+.snackbar-content > .title > .close-button {
+  margin-left: 95%;
+  margin-top: -9%;
+  @apply cursor-pointer;
+}
+
+.snackbar-content > .message {
+  @apply text-left text-sm mt-2;
+}

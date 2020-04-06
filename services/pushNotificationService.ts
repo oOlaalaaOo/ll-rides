@@ -1,7 +1,6 @@
 import 'firebase/messaging';
 import firebase from 'firebase/app';
 import localforage from 'localforage';
-import { notification } from 'antd';
 
 const firebaseCloudMessaging = {
   tokenInlocalforage: async () => {
@@ -37,14 +36,14 @@ const firebaseCloudMessaging = {
       messaging.onMessage(payload => {
         console.log('Message received. ', payload);
 
-        notification.open({
-          message: 'Notification Title',
-          description:
-            'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
-          onClick: () => {
-            console.log('Notification Clicked!');
-          }
-        });
+        // notification.open({
+        //   message: 'Notification Title',
+        //   description:
+        //     'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
+        //   onClick: () => {
+        //     console.log('Notification Clicked!');
+        //   }
+        // });
       });
     } catch (error) {
       console.error(error);

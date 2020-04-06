@@ -1,12 +1,12 @@
 import { FC } from 'react';
 
-type Props = {
+interface IProps {
   src: string;
   alt: string;
   width: string;
-};
+}
 
-const Image: FC<Props> = ({ src, alt, width = '100%' }) => {
+const Image: FC<IProps> = ({ src, alt, width = '100%' }) => {
   return (
     <div style={{ width: width, margin: 'auto' }}>
       <img src={src} alt={alt} style={{ width: '100%' }} />

@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import authApi from '../../api/authApi';
-import { Card, Form, Input, Button, Checkbox, Alert } from 'antd';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { Image, LineBreak } from '../ui';
 import Router from 'next/router';
 import cookieUtil from '../../utils/cookieUtil';
 import localStorageUtil from '../../utils/localStorageUtil';
+import { Formik } from 'formik';
 
 const ForgotPasswordFormTemplate: React.FC<any> = () => {
   const [error, setError] = useState({
@@ -13,10 +12,9 @@ const ForgotPasswordFormTemplate: React.FC<any> = () => {
     message: '',
     description: ''
   });
-
   const [loginProcessing, setLoginProcessing] = useState(false);
 
-  const handleSubmit = async (values: any) => {
+  const submitForm = async (values: any) => {
     try {
       setLoginProcessing(true);
       setError({
@@ -46,95 +44,64 @@ const ForgotPasswordFormTemplate: React.FC<any> = () => {
 
   return (
     <>
-      <Card>
+      <div>
         <Image src='/images/logo.png' alt='ll-rides' width='35%' />
 
         <LineBreak top='10px' bottom='10px' />
 
         {error.status === true ? (
           <>
-            <Alert
-              message={error.message}
-              description={error.description}
-              type='error'
-              closable
-              showIcon
-            />
+            <div>
+              {error.message}
+              {error.description}
+            </div>
             <LineBreak top='10px' bottom='10px' />
           </>
         ) : null}
 
-        <Form onFinish={handleSubmit}>
-          <Form.Item
-            name='email'
-            rules={[
-              {
-                required: true,
-                message: 'Please input your email address'
-              },
-              {
-                type: 'email',
-                message: 'Please input valid email address'
-              }
-            ]}>
-            <Input prefix={<UserOutlined />} placeholder='Email Address' />
-          </Form.Item>
-          <Form.Item
-            name='password'
-            rules={[
-              {
-                required: true,
-                message: 'Please input your password'
-              }
-            ]}>
-            <Input
-              prefix={<LockOutlined />}
-              type='password'
-              placeholder='Password'
-            />
-          </Form.Item>
-          <Form.Item>
-            <Form.Item name='remember' valuePropName='checked' noStyle>
-              <Checkbox>Remember me</Checkbox>
-            </Form.Item>
-            <a
-              style={{ float: 'right' }}
-              href='#'
-              onClick={e => {
-                e.preventDefault();
-                Router.push('/');
-              }}>
-              Forgot Password
-            </a>
-          </Form.Item>
-          <Form.Item noStyle>
-            <Button
-              type='primary'
-              htmlType='submit'
-              block
-              loading={loginProcessing}>
-              Log in
-            </Button>
-          </Form.Item>
-          <Form.Item noStyle>
-            <div style={{ textAlign: 'center', marginTop: '10px' }}>Or</div>
-          </Form.Item>
-          <Form.Item noStyle>
-            <div style={{ textAlign: 'center', marginTop: '10px' }}>
-              <Button
-                type='link'
-                htmlType='button'
+        <Formik
+          initialValues={{ email: '', password: '' }}
+          onSubmit={async datas => {
+            console.log(datas);
+            const resp = await submitForm(datas);
+
+            console.log(resp);
+          }}
+        >
+          {({ values, handleChange, handleBlur, handleSubmit }) => {
+            <form onSubmit={handleSubmit}>
+              <input
+                type='email'
+                value={values.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                placeholder='Email Address'
+              />
+              <input
+                type='password'
+                value={values.password}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                placeholder='Password'
+              />
+
+              <button type='submit' disabled={loginProcessing}>
+                Log in
+              </button>
+              <div style={{ textAlign: 'center', marginTop: '10px' }}>Or</div>
+              <button
                 onClick={e => {
                   e.preventDefault();
-                  Router.push('/register');
+                  Router.push('/auth/register');
                 }}
-                disabled={loginProcessing}>
+                disabled={loginProcessing}
+              >
                 Register Now!
-              </Button>
-            </div>
-          </Form.Item>
-        </Form>
-      </Card>
+              </button>
+            </form>;
+          }}
+        </Formik>
+      </div>
     </>
   );
 };
