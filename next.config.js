@@ -5,7 +5,7 @@ const isProd = process.env.NODE_ENV === 'production';
 
 const nextConfig = {
   env: {
-    devApiUrl: 'http://localhost:8000/api/',
+    devApiUrl: 'http://localhost:5000/api/',
     prodApiUrl: 'https://ll-rides.com/api/'
   }
 };
