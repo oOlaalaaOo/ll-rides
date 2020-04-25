@@ -8,7 +8,6 @@ import '../styles/index.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import NProgress from 'nprogress';
 import Router from 'next/router';
-import Head from 'next/head';
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -28,9 +27,6 @@ class MyApp extends App<any> {
 
     return (
       <>
-        <Head>
-          <link rel='stylesheet' type='text/css' href='/nprogress.css' />
-        </Head>
         <Provider store={store}>
           <Component {...pageProps} />
         </Provider>

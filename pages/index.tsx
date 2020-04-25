@@ -1,7 +1,6 @@
 import MainLayout from '../components/layouts/MainLayout';
 import { NextPage } from 'next';
 import Router from 'next/router';
-import { Notify } from '../components/ui/Snackbar';
 
 const Index: NextPage<any> = () => {
   return (
@@ -35,13 +34,6 @@ const Index: NextPage<any> = () => {
             src='/images/logo.png'
             alt='ll-rides'
             className='w-1/2 sm:w-1/2 md:w-2/5 lg:w-2/5 xl:w-1/4'
-            onClick={() => {
-              const xTitle = `Title ` + Math.random();
-              Notify({
-                title: xTitle,
-                message: 'Sample notification message',
-              });
-            }}
           />
           <h1 style={{ fontSize: '28pt' }}>Been in a beautiful place?</h1>
           <p>

@@ -12,7 +12,7 @@ const withAuth = (Page: NextPage<any>) => {
       if (!accessToken || accessToken === '') {
         if (res) {
           res.writeHead(301, {
-            Location: 'auth/login'
+            Location: '/auth/login'
           });
 
           res.end();
@@ -31,7 +31,7 @@ const withAuth = (Page: NextPage<any>) => {
       } catch (err) {
         if (res) {
           res.writeHead(301, {
-            Location: 'auth/login'
+            Location: '/auth/login'
           });
 
           res.end();

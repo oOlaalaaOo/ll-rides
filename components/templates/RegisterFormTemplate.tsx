@@ -70,13 +70,11 @@ const RegisterFormTemplate: React.FC<any> = () => {
                 description: '',
               });
 
-              const resp = await authApi.register(
+              await authApi.register(
                 values.email,
                 values.password,
                 values.name
               );
-
-              console.log(resp);
 
               Router.push('/auth/login');
             } catch (err) {

@@ -1,13 +1,13 @@
 import { FC, useState, useEffect } from 'react';
 
-interface Props {
+interface IProps {
   type?: string;
   title: string;
   message: string;
   onClose?: Function;
 }
 
-const Alert: FC<Props> = ({
+const Alert: FC<IProps> = ({
   type = 'default',
   title,
   message,

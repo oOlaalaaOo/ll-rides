@@ -43,7 +43,7 @@ const register = async (
 
 const user = async (accessToken: string) => {
   try {
-    const resp = await apiService.getUserReq('user', accessToken);
+    const resp = await apiService.getUserReq('auth/user', accessToken);
 
     return resp;
   } catch (err) {

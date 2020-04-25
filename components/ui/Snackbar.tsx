@@ -1,12 +1,12 @@
 import React from 'react';
 
-interface NotifyProps {
+interface IProps {
   title: string;
   message: string;
   duration?: number;
 }
 
-export const Notify = ({ title, message, duration = 5000 }: NotifyProps) => {
+export const Notify = ({ title, message, duration = 5000 }: IProps) => {
   let snackbarContainer = document.getElementById('snackbar-container');
   let snackbarContent = document.createElement('div');
   let snackbarContentTitle = document.createElement('div');
